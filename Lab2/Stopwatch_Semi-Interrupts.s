@@ -36,12 +36,10 @@ _start:
     // To DO: write to the pushbutton KEY interrupt mask register
     // Or, you can call enable_PB_INT_ASM subroutine from previous task
     // to enable interrupt for ARM A9 private timer, use ARM_TIM_config_ASM subroutine
-	
     LDR        R0, =0xFF200050      // pushbutton KEY base address
     MOV        R1, #0xF             // set interrupt mask bits
     STR        R1, [R0, #0x8]       // interrupt mask register (base + 8)
     // enable IRQ interrupts in the processor
-	
     MOV        R0, #0b01010011      // IRQ unmasked, MODE = SVC
     MSR        CPSR_c, R0
 	
@@ -50,7 +48,7 @@ _start:
 	ldr r0, [pc, #-4]
 	.word 0x1E8480	//set load value
 	BL ARM_TIM_config_ASM
-	mov r0, #0b0111
+	mov r0, #0b111
 	BL enable_PB_INT_ASM
 IDLE:
     mov r3, #0
@@ -314,7 +312,7 @@ PB_clear_edgecp_ASM:
 enable_PB_INT_ASM:
 	push {v1-v3}
 	ldr v1, =PUSH	//address of button
-	ldr v2, [v1, #8]!//loads interruptmask register
+	ldr v2, [v1, #8]//loads interruptmask register
 	mov v3, #1		//index and clear value
 	
 	TST r0, v3		//check if enable button 0
@@ -339,7 +337,7 @@ enable_PB_INT_ASM:
 disable_PB_INT_ASM:
 	push {v1-v3}
 	ldr v1, =PUSH	//address of button
-	ldr v2, [v1, #8]!//loads interruptmask register
+	ldr v2, [v1, #8]//loads interruptmask register
 	mov v3, #1		//index and clear value
 	
 	TST r0, v3		//check if enable button 0
