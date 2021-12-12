@@ -2,7 +2,7 @@
 All ARM RISC_V code written in computer organisation class 
 
 link to simulator : http://ecse324.ece.mcgill.ca/simulator/?sys=arm-de1soc
-to use: delete the two lines auto-generated in simulator and drag and drop file to use
+<br>to use: delete the two lines auto-generated in simulator and drag and drop file to use
 
 Each lab contains a lab report in PDF form that breaks down each program written
 along with improvements that could be made
